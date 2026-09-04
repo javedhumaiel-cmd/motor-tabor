@@ -57,6 +57,7 @@ export function CountUp({ value, className = '' }) {
 
 /*
   WordReveal — each word rises from a masked line, staggered. Premium headline feel.
+  Word gaps come from marginRight so they never collapse inside the inline-block clip.
 */
 export function WordReveal({ text, className = '', delay = 0, wordDelay = 0.055 }) {
   const ref = useRef(null)
@@ -65,7 +66,11 @@ export function WordReveal({ text, className = '', delay = 0, wordDelay = 0.055 
   return (
     <span ref={ref} className={className}>
       {words.map((w, i) => (
-        <span key={i} className="inline-block overflow-hidden align-bottom" style={{ paddingBottom: '0.08em' }}>
+        <span
+          key={i}
+          className="inline-block overflow-hidden align-bottom"
+          style={{ paddingBottom: '0.08em', marginRight: i < words.length - 1 ? '0.26em' : 0 }}
+        >
           <motion.span
             className="inline-block"
             initial={{ y: '115%' }}
@@ -73,7 +78,6 @@ export function WordReveal({ text, className = '', delay = 0, wordDelay = 0.055 
             transition={{ duration: 0.8, ease: EASE, delay: delay + i * wordDelay }}
           >
             {w}
-            {i < words.length - 1 ? ' ' : ''}
           </motion.span>
         </span>
       ))}
