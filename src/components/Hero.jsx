@@ -12,7 +12,7 @@ import { useScroll, useReducedMotion } from 'framer-motion'
 */
 
 const V1 = 'https://cdn.jsdelivr.net/gh/javedhumaiel-cmd/motor-tabor@master/public/video/hero-birds-eye.mp4'
-const V2 = 'https://cdn.jsdelivr.net/gh/javedhumaiel-cmd/motor-tabor@master/public/video/hero-pool-dive.mp4'
+const V2 = 'https://cdn.jsdelivr.net/gh/javedhumaiel-cmd/motor-tabor@master/public/video/hero-approach.mp4'
 const POSTER = 'https://cdn.jsdelivr.net/gh/javedhumaiel-cmd/motor-tabor@master/public/video/hero-poster.jpg'
 
 // Informative copy revealed across the scroll. Contiguous bands with soft
