@@ -1,4 +1,5 @@
 import Reveal from './Reveal'
+import { CountUp, WordReveal } from '../lib/motion'
 import { site, stats } from '../data'
 
 // Editorial intro that sits directly beneath the hero.
@@ -10,20 +11,13 @@ export default function Overview() {
           The Residence &middot; {site.address.replace(' Street', '')}
         </Reveal>
 
-        <Reveal
-          as="h2"
-          delay={80}
-          className="mt-6 max-w-4xl font-display text-4xl md:text-5xl font-light leading-tight tracking-tight text-ink"
-        >
-          A brand-new address for
-          <br className="hidden sm:block" /> one-bedroom living in {site.neighborhood}.
-        </Reveal>
+        <h2 className="mt-6 max-w-4xl font-display text-4xl md:text-5xl font-light leading-tight tracking-tight text-ink">
+          <WordReveal text="A brand-new address for one-bedroom" delay={0.05} />
+          <br className="hidden sm:block" />
+          <WordReveal text={`living in ${site.neighborhood}.`} delay={0.28} />
+        </h2>
 
-        <Reveal
-          as="p"
-          delay={100}
-          className="mt-8 max-w-2xl text-stone-600 leading-relaxed"
-        >
+        <Reveal as="p" delay={100} className="mt-8 max-w-2xl text-stone-600 leading-relaxed">
           Motor Tabor is a new-construction one-bedroom community in the {site.neighborhood}{' '}
           neighborhood of West Los Angeles — moments from Culver City, Century City, West LA, and the
           I-10 — pairing high-end finishes with resort-style amenities for a way of living that feels
@@ -32,17 +26,11 @@ export default function Overview() {
 
         <div className="mt-16 grid grid-cols-2 gap-x-8 gap-y-12 md:mt-20 md:grid-cols-4">
           {stats.map((stat, i) => (
-            <Reveal
-              key={stat.label}
-              delay={i * 80}
-              className="border-t border-stone-200 pt-6"
-            >
+            <Reveal key={stat.label} delay={i * 90} className="border-t border-stone-200 pt-6">
               <p className="font-display text-4xl md:text-5xl font-light leading-none text-ink">
-                {stat.value}
+                <CountUp value={stat.value} />
               </p>
-              <p className="mt-2 text-xs uppercase tracking-[0.25em] text-stone-500">
-                {stat.label}
-              </p>
+              <p className="mt-2 text-xs uppercase tracking-[0.25em] text-stone-500">{stat.label}</p>
             </Reveal>
           ))}
         </div>

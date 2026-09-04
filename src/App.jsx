@@ -1,4 +1,4 @@
-import { useReveal } from './lib/useReveal'
+import ScrollProgress from './components/ScrollProgress'
 import Nav from './components/Nav'
 import Hero from './components/Hero'
 import Overview from './components/Overview'
@@ -11,9 +11,9 @@ import Contact from './components/Contact'
 import Footer from './components/Footer'
 
 export default function App() {
-  useReveal()
   return (
     <div id="top" className="bg-paper">
+      <ScrollProgress />
       <Nav />
       <main>
         <Hero />
