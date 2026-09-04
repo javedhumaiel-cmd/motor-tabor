@@ -6,7 +6,7 @@ export default function Neighborhood() {
     <section id="location">
       <div className="relative h-[60vh] min-h-[420px] overflow-hidden">
         <img
-          src="/img/gallery/g01.jpg"
+          src="https://cdn.jsdelivr.net/gh/javedhumaiel-cmd/motor-tabor@master/public/img/gallery/g01.jpg"
           className="absolute inset-0 h-full w-full object-cover"
           alt="Palms, West Los Angeles from above"
         />

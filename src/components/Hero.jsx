@@ -1,98 +1,97 @@
-import { useRef } from 'react'
-import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion'
+import { useRef, useState } from 'react'
+import { motion, useScroll, useTransform, useMotionValueEvent, useReducedMotion } from 'framer-motion'
 import { site } from '../data'
 
 /*
-  SCRUB-SCROLLING HERO
-  --------------------
-  A pinned, scroll-driven cinematic sequence that mimics the drone-into-lobby
-  move: exterior  ->  aerial over the rooftop pool  ->  into the lobby.
-  Each layer's opacity + scale is tied to scroll progress.
-
-  >> DROP-IN VIDEO LATER <<
-  When the drone clip is ready, replace LAYER 1 with:
-    <motion.video src="/video/hero.mp4" muted playsInline
-      style={{ scale: layer1Scale, opacity: layer1Opacity }}
-      className="absolute inset-0 h-full w-full object-cover" />
-  or, for a true frame-scrub, drive video.currentTime from scrollYProgress.
+  SCRUB-SCROLLING HERO — real drone footage.
+  The pinned video's currentTime is driven by scroll progress, so scrolling
+  literally flies the camera down into the building. Poster shows instantly
+  while the clip buffers.
 */
 
-const layers = [
-  { src: '/img/hero.jpg', kicker: 'Palms · West Los Angeles' },
-  { src: '/img/gallery/g02.jpg', kicker: 'Rooftop pool & sky deck' },
-  { src: '/img/gallery/g03.jpg', kicker: 'Step inside' },
-]
+const VIDEO = 'https://cdn.jsdelivr.net/gh/javedhumaiel-cmd/motor-tabor@master/public/video/hero.mp4'
+const POSTER = 'https://cdn.jsdelivr.net/gh/javedhumaiel-cmd/motor-tabor@master/public/video/poster.jpg'
 
 export default function Hero() {
   const ref = useRef(null)
+  const videoRef = useRef(null)
+  const durationRef = useRef(0)
+  const rafRef = useRef(0)
   const reduce = useReducedMotion()
+  const [ready, setReady] = useState(false)
+
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ['start start', 'end end'],
   })
 
-  // Layer 1 — exterior
-  const o1 = useTransform(scrollYProgress, [0, 0.28, 0.4], [1, 1, 0])
-  const s1 = useTransform(scrollYProgress, [0, 0.4], [1.04, 1.22])
-  // Layer 2 — aerial / pool
-  const o2 = useTransform(scrollYProgress, [0.3, 0.44, 0.62, 0.72], [0, 1, 1, 0])
-  const s2 = useTransform(scrollYProgress, [0.3, 0.72], [1.14, 1.28])
-  // Layer 3 — lobby
-  const o3 = useTransform(scrollYProgress, [0.64, 0.82], [0, 1])
-  const s3 = useTransform(scrollYProgress, [0.64, 1], [1.16, 1.02])
+  // Drive the video frame from scroll position.
+  useMotionValueEvent(scrollYProgress, 'change', (v) => {
+    const video = videoRef.current
+    const d = durationRef.current
+    if (!video || !d) return
+    cancelAnimationFrame(rafRef.current)
+    rafRef.current = requestAnimationFrame(() => {
+      const t = Math.min(d - 0.05, Math.max(0, v * d))
+      if (Math.abs(video.currentTime - t) > 0.015) video.currentTime = t
+    })
+  })
 
-  const opacities = [o1, o2, o3]
-  const scales = [s1, s2, s3]
+  const onMeta = () => {
+    if (videoRef.current) {
+      durationRef.current = videoRef.current.duration || 0
+      setReady(true)
+    }
+  }
 
   // Text motion
-  const titleY = useTransform(scrollYProgress, [0, 0.85], [0, -60])
-  const subOpacity = useTransform(scrollYProgress, [0, 0.12, 0.85, 1], [1, 1, 1, 0])
+  const titleY = useTransform(scrollYProgress, [0, 0.9], [0, -70])
+  const textOpacity = useTransform(scrollYProgress, [0, 0.1, 0.82, 1], [1, 1, 1, 0])
   const cueOpacity = useTransform(scrollYProgress, [0, 0.08], [1, 0])
 
   if (reduce) {
     return (
       <section className="relative h-screen w-full overflow-hidden">
-        <img src="/img/hero.jpg" alt="Motor Tabor exterior" className="absolute inset-0 h-full w-full object-cover" />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/20 to-black/60" />
-        <HeroText />
+        <img src={POSTER} alt="Motor Tabor" className="absolute inset-0 h-full w-full object-cover" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/15 to-black/70" />
+        <div className="relative z-10 flex h-full items-center">
+          <HeroText />
+        </div>
       </section>
     )
   }
 
   return (
-    <section ref={ref} className="relative h-[280vh] w-full" aria-label="Motor Tabor">
+    <section ref={ref} className="relative h-[300vh] w-full" aria-label="Motor Tabor">
       <div className="sticky top-0 h-screen w-full overflow-hidden">
-        {layers.map((layer, i) => (
-          <motion.div key={i} style={{ opacity: opacities[i] }} className="absolute inset-0">
-            <motion.img
-              src={layer.src}
-              alt=""
-              style={{ scale: scales[i] }}
-              className="absolute inset-0 h-full w-full object-cover"
-            />
-          </motion.div>
-        ))}
+        {/* Poster underlay for instant paint */}
+        <img
+          src={POSTER}
+          alt=""
+          aria-hidden="true"
+          className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ${
+            ready ? 'opacity-0' : 'opacity-100'
+          }`}
+        />
+        <video
+          ref={videoRef}
+          src={VIDEO}
+          poster={POSTER}
+          muted
+          playsInline
+          preload="auto"
+          onLoadedMetadata={onMeta}
+          onLoadedData={onMeta}
+          className="absolute inset-0 h-full w-full object-cover"
+        />
 
-        {/* Legibility scrim */}
+        {/* Legibility scrims */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/15 to-black/70" />
         <div className="absolute inset-0 bg-gradient-to-r from-black/40 to-transparent" />
 
-        <motion.div style={{ y: titleY, opacity: subOpacity }} className="relative z-10 flex h-full items-center">
+        <motion.div style={{ y: titleY, opacity: textOpacity }} className="relative z-10 flex h-full items-center">
           <HeroText />
         </motion.div>
-
-        {/* Kicker that changes with the sequence */}
-        <div className="pointer-events-none absolute bottom-28 left-0 right-0 z-10 flex justify-center">
-          {layers.map((layer, i) => (
-            <motion.span
-              key={i}
-              style={{ opacity: opacities[i] }}
-              className="absolute text-[11px] font-medium uppercase tracking-[0.32em] text-white/80"
-            >
-              {layer.kicker}
-            </motion.span>
-          ))}
-        </div>
 
         {/* Scroll cue */}
         <motion.div

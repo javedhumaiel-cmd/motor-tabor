@@ -10,7 +10,7 @@ export default function Residence() {
           <Reveal className="lg:sticky lg:top-24">
             <div className="group overflow-hidden rounded-2xl aspect-[4/5]">
               <img
-                src="/img/gallery/g11.jpg"
+                src="https://cdn.jsdelivr.net/gh/javedhumaiel-cmd/motor-tabor@master/public/img/gallery/g11.jpg"
                 alt="Chef-style kitchen with chevron tile backsplash and stainless appliances"
                 loading="lazy"
                 className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
@@ -18,7 +18,7 @@ export default function Residence() {
             </div>
             <div className="group mt-4 overflow-hidden rounded-2xl aspect-[16/10]">
               <img
-                src="/img/gallery/g12.jpg"
+                src="https://cdn.jsdelivr.net/gh/javedhumaiel-cmd/motor-tabor@master/public/img/gallery/g12.jpg"
                 alt="Staged bedroom with a window view"
                 loading="lazy"
                 className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"

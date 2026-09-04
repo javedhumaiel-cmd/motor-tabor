@@ -49,25 +49,25 @@ export const amenities = [
   {
     title: 'Rooftop Pool & Cabana',
     body: 'A resort-style pool and cabana lounge framed by the Westside skyline — the centerpiece of life at Motor Tabor.',
-    img: '/img/gallery/g02.jpg',
+    img: 'https://cdn.jsdelivr.net/gh/javedhumaiel-cmd/motor-tabor@master/public/img/gallery/g02.jpg',
     span: 'lg:col-span-7',
   },
   {
     title: 'Private Fitness Studio',
     body: 'A fully equipped fitness facility with strength racks, free weights, and cardio — no membership required.',
-    img: '/img/gallery/g05.jpg',
+    img: 'https://cdn.jsdelivr.net/gh/javedhumaiel-cmd/motor-tabor@master/public/img/gallery/g05.jpg',
     span: 'lg:col-span-5',
   },
   {
     title: 'Attended Lobby',
     body: 'A warm, wood-lined arrival lobby with ButterflyMX video intercom and secured MIWA access control.',
-    img: '/img/gallery/g03.jpg',
+    img: 'https://cdn.jsdelivr.net/gh/javedhumaiel-cmd/motor-tabor@master/public/img/gallery/g03.jpg',
     span: 'lg:col-span-5',
   },
   {
     title: '6th-Floor Sky Deck',
     body: 'A rooftop patio with BBQ grills, a gas firepit, and a dining lounge for golden-hour evenings.',
-    img: '/img/gallery/g01.jpg',
+    img: 'https://cdn.jsdelivr.net/gh/javedhumaiel-cmd/motor-tabor@master/public/img/gallery/g01.jpg',
     span: 'lg:col-span-7',
   },
 ]
@@ -82,24 +82,24 @@ export const conveniences = [
 ]
 
 export const gallery = [
-  { src: '/img/gallery/g11.jpg', label: 'Chef-style kitchen' },
-  { src: '/img/gallery/g08.jpg', label: 'Open living & dining' },
-  { src: '/img/gallery/g12.jpg', label: 'Bedroom with a view' },
-  { src: '/img/gallery/g04.jpg', label: 'Arrival lobby' },
-  { src: '/img/gallery/g09.jpg', label: 'Light-filled interiors' },
-  { src: '/img/gallery/g10.jpg', label: 'In-unit laundry' },
-  { src: '/img/gallery/g06.jpg', label: 'Fitness studio' },
-  { src: '/img/gallery/g07.jpg', label: 'Cardio & training' },
+  { src: 'https://cdn.jsdelivr.net/gh/javedhumaiel-cmd/motor-tabor@master/public/img/gallery/g11.jpg', label: 'Chef-style kitchen' },
+  { src: 'https://cdn.jsdelivr.net/gh/javedhumaiel-cmd/motor-tabor@master/public/img/gallery/g08.jpg', label: 'Open living & dining' },
+  { src: 'https://cdn.jsdelivr.net/gh/javedhumaiel-cmd/motor-tabor@master/public/img/gallery/g12.jpg', label: 'Bedroom with a view' },
+  { src: 'https://cdn.jsdelivr.net/gh/javedhumaiel-cmd/motor-tabor@master/public/img/gallery/g04.jpg', label: 'Arrival lobby' },
+  { src: 'https://cdn.jsdelivr.net/gh/javedhumaiel-cmd/motor-tabor@master/public/img/gallery/g09.jpg', label: 'Light-filled interiors' },
+  { src: 'https://cdn.jsdelivr.net/gh/javedhumaiel-cmd/motor-tabor@master/public/img/gallery/g10.jpg', label: 'In-unit laundry' },
+  { src: 'https://cdn.jsdelivr.net/gh/javedhumaiel-cmd/motor-tabor@master/public/img/gallery/g06.jpg', label: 'Fitness studio' },
+  { src: 'https://cdn.jsdelivr.net/gh/javedhumaiel-cmd/motor-tabor@master/public/img/gallery/g07.jpg', label: 'Cardio & training' },
 ]
 
 export const plans = [
-  { name: 'Plan A', img: '/img/floorplans/fp01.png' },
-  { name: 'Plan A1', img: '/img/floorplans/fp02.png' },
-  { name: 'Plan B', img: '/img/floorplans/fp03.png' },
-  { name: 'Plan B1', img: '/img/floorplans/fp04.png' },
-  { name: 'Plan C', img: '/img/floorplans/fp05.png' },
-  { name: 'Plan D', img: '/img/floorplans/fp06.png' },
-  { name: 'Plan D1', img: '/img/floorplans/fp07.png' },
+  { name: 'Plan A', img: 'https://cdn.jsdelivr.net/gh/javedhumaiel-cmd/motor-tabor@master/public/img/floorplans/fp01.png' },
+  { name: 'Plan A1', img: 'https://cdn.jsdelivr.net/gh/javedhumaiel-cmd/motor-tabor@master/public/img/floorplans/fp02.png' },
+  { name: 'Plan B', img: 'https://cdn.jsdelivr.net/gh/javedhumaiel-cmd/motor-tabor@master/public/img/floorplans/fp03.png' },
+  { name: 'Plan B1', img: 'https://cdn.jsdelivr.net/gh/javedhumaiel-cmd/motor-tabor@master/public/img/floorplans/fp04.png' },
+  { name: 'Plan C', img: 'https://cdn.jsdelivr.net/gh/javedhumaiel-cmd/motor-tabor@master/public/img/floorplans/fp05.png' },
+  { name: 'Plan D', img: 'https://cdn.jsdelivr.net/gh/javedhumaiel-cmd/motor-tabor@master/public/img/floorplans/fp06.png' },
+  { name: 'Plan D1', img: 'https://cdn.jsdelivr.net/gh/javedhumaiel-cmd/motor-tabor@master/public/img/floorplans/fp07.png' },
 ]
 
 export const neighborhood = [
